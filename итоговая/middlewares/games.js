@@ -12,6 +12,7 @@ const findAllGames = async (req, res, next) => {
 const checkEmptyFields = async (req, res, next) => {
   if (req.isVoteRequest) {
     next();
+    return
   }
   if (
     !req.body.title ||
@@ -25,6 +26,7 @@ const checkEmptyFields = async (req, res, next) => {
     next();
   }
 };
+
 
 const checkIsGameExists = async (req, res, next) => {
   console.log(req.gamesArray);
@@ -42,6 +44,7 @@ const checkIsGameExists = async (req, res, next) => {
 const checkIfCategoriesAvaliable = async (req, res, next) => {
   if (req.isVoteRequest) {
     next();
+    return
   }
   if (!req.body.categories || req.body.categories.length === 0) {
     res.headers = { "Content-Type": "application/json" };
